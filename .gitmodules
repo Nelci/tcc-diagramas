@@ -1,0 +1,4 @@
+[submodule "icons"]
+	path = icons
+	url = https://github.com/tupadr3/plantuml-icon-font-sprites.git
+	branch = master

@@ -1,0 +1,46 @@
+@startuml
+!include ./general_definitions.puml
+!include ./general_elements.puml
+title Visão Geral nTopus
+
+radio1 -up-> rsystem
+truck1 -up-> scanner1
+truck1 -up-> camera3
+person1 -up-> scanner1
+scanner1-up-> lan
+rsystem -up-> lan
+camera3 -up-> lan
+lan -right-> userapp2
+lan -left-> syncserver
+syncserver -up-> internetdevice
+
+truck1 -up-> camera1
+car1 -up-> camera2
+ambulance1 -up-> camera1
+ambulance1 -up-> camera2
+
+antena1 -right-> internetdevice
+camera1 -up-> internetdevice
+camera2 -up-> antena1
+
+truck1 -up-> antena1
+celular1 -up-> antena1
+ambulance1 -up-> antena1
+car1 -up-> antena1
+
+internetdevice -right-> devicegateway
+
+devicegateway -right-> deviceserver
+deviceserver -right-> queue
+queue -down-> proccessingserver
+proccessingserver <-left-> bigdata
+bigdata <-left-> apiserver  
+apiserver <-down-> apigateway  
+apiserver <-down-> applicationserver
+applicationserver <-left-> apigateway  
+
+apigateway <-left-> internetuser
+internetuser <-left-> userapp2
+internetuser <-down-> userapp1
+internetuser <-down-> celular2
+@enduml

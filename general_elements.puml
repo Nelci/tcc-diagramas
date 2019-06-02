@@ -1,0 +1,50 @@
+@startuml
+!include ./icons/font-awesome-5/mobile_alt.puml
+!include ./icons/font-awesome-5/id_card_alt.puml
+!include ./icons/font-awesome-5/ambulance.puml
+!include ./icons/font-awesome-5/broadcast_tower.puml
+!include ./icons/font-awesome-5/server.puml
+!include ./icons/font-awesome-5/truck_moving.puml
+!include ./icons/material/router.puml
+!include ./icons/material/settings_input_antenna.puml
+!include ./icons/material/voice_chat.puml
+!include ./icons/material/drive_eta.puml
+!include ./icons/material/laptop_mac.puml
+
+MATERIAL_DRIVE_ETA(car1, Carro, usecase)
+FA5_AMBULANCE(ambulance1, Ambulancia, usecase)
+MATERIAL_VOICE_CHAT(camera1, Camera LPR, usecase)
+MATERIAL_VOICE_CHAT(camera2, Camera LPR, usecase)
+FA5_MOBILE_ALT(celular1, Celular, usecase)
+FA5_MOBILE_ALT(celular2, Celular, usecase)
+
+cloud Internet as internetdevice
+cloud Internet as internetuser
+
+MATERIAL_LAPTOP_MAC(userapp1, Acesso a Aplicação, usecase)
+FA5_BROADCAST_TOWER(antena1, Antena Celular, usecase)
+
+node Empresa as empresa {
+  cloud LAN as lan
+  MATERIAL_VOICE_CHAT(camera3, Camera LPR, usecase)
+  FA5_BROADCAST_TOWER(rsystem, Sistema de Rádio, usecase)
+  FA5_SERVER(syncserver, Servidor sincronismo, usecase)
+
+  MATERIAL_ROUTER(radio1, Radio, usecase)
+  MATERIAL_SETTINGS_INPUT_ANTENNA(scanner1, Scanner Indoor, usecase)
+  FA5_ID_CARD_ALT(person1, Funcionário, usecase)
+  FA5_TRUCK_MOVING(truck1, Caminhão, usecase)
+
+  MATERIAL_LAPTOP_MAC(userapp2, Acesso a Aplicação, usecase)
+}
+
+node Nuvem as ntopus {
+  FA5_SERVER(devicegateway, Gateway de Chegada, usecase)
+  FA5_SERVER(apigateway, Gateway de API/APP, usecase)
+  FA5_SERVER(deviceserver, Servidor de Chegada, usecase)
+  queue "Fila de tratativas" as queue
+  FA5_SERVER(proccessingserver, Processador de Informações, usecase)
+  database BigData as bigdata
+  FA5_SERVER(apiserver, Servidor de API, usecase)
+  FA5_SERVER(applicationserver, Servidor de Aplicação, usecase)
+}

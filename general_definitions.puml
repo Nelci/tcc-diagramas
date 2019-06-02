@@ -1,0 +1,8 @@
+@startuml
+!include ./icons/common.puml
+skinparam defaultTextAlignment center
+skinparam usecase {
+	BackgroundColor Transparent
+	BorderColor Transparent
+  shadowing false
+}
